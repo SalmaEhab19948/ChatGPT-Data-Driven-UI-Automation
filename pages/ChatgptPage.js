@@ -12,11 +12,14 @@ class ChatgptPage {
     }
 
 
+    //
     async waitForPromptReady(timeout = 40000) {
     await this.page.waitForSelector('#prompt-textarea:not([disabled])', 
         {state: 'visible',timeout});
     }
 
+
+    // Send a prompt to ChatGPT
     async sendPrompt(prompt) {
     await this.waitForPromptReady();
     await this.promptTextArea.fill(prompt);
@@ -25,17 +28,22 @@ class ChatgptPage {
 
     }
 
+
+    // Wait for the response to complete by checking the visibility of the stop generating button
     async waitForResponseToComplete() {
-    // await this.stopGeneratingButton.waitFor({ state: 'visible' });
     await this.stopGeneratingButton.waitFor({ state: 'hidden' });
     }
 
+
+    // Extract the response
     async getResponse() {  
     log(`Getting response from ChatGPT`);
     await this.waitForResponseToComplete();
     return await this.promptAnswer.last().innerText();
     }
 
+
+    // Start a new chat by clicking the new chat button
     async startNewChat() {
     log(`Starting new chat`);
     await this.newChatButton.click({ force: true });
@@ -46,7 +54,5 @@ class ChatgptPage {
     await this.waitForPromptReady();
 }
 
-
 };
-
 module.exports = ChatgptPage;

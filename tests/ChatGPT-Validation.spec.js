@@ -4,13 +4,16 @@ const ExcelUtil = require('../utils/ExcelUtil');
 const PromptBuilder = require('../utils/PromptBuilder');
 const BasePage = require('../pages/BasePage');
 
+
+// Before each test, navigate to the ChatGPT page before running the test
 test.beforeEach(async ({ page }) => {
     const basePage = new BasePage(page);
     await basePage.navigate('/');
 });
 
 
-test('Capital of Saudi Arabia @TC001', async ({ page }) => {
+
+test('Validate TC001 - What is the capital of Saudi Arabia? @TC001', async ({ page }) => {
     const chatgptPage = new ChatgptPage(page);
 
     const testData = ExcelUtil.getTestCase('TC001');
@@ -32,7 +35,8 @@ test('Capital of Saudi Arabia @TC001', async ({ page }) => {
 });
 
 
-test('Capital of India @TC002', async ({ page }) => {
+
+test('Validate TC002 - What is the capital of India? @TC002', async ({ page }) => {
     const chatgptPage = new ChatgptPage(page);
 
     const testData = ExcelUtil.getTestCase('TC002');
@@ -54,7 +58,8 @@ test('Capital of India @TC002', async ({ page }) => {
 });
 
 
-test('Submission process @TC003', async ({ page }) => {
+
+test('Validate TC003 - What is 10 + 20? @TC003', async ({ page }) => {
     const chatgptPage = new ChatgptPage(page);
 
     const testData = ExcelUtil.getTestCase('TC003');
